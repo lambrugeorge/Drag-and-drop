@@ -74,11 +74,51 @@ function updateDOM() {
   updateSavedColumns();
 }
 
+//Complete Column
+completeList.textContent = '';
+completeListArray.forEach((completeItem, index) => {
+  createItemEl((completeList, 0, completeItem, index));
+});
+
+//On Hold Column
+onHoldList.textContent = '';
+onHoldListArray.forEach((onHoldItem, index) => {
+  createItemEl(onHoldList, 0, onHoldItem, index);
+})
+
+//Run getSavedColumns only once, update Local storage
+
+updatedOnLoad = true;
+updateSavedColumns();
+
+
+
+// Allows arrays to reflect Drag and Drop Items
+const rebuildArrays=() => {
+  backlogListArray = [];
+  for (let i = 0; i < backlogList.children.length; i++){
+    backlogListArray.push(backlogList.children[i].textContent)
+  }
+  progressListArray = [];
+  for (let i = 0; i < progressList.children.length; i++){
+    progressListArray.push(progressList.children[i].textContent)
+  }
+  completeListArray = [];
+  for (let i = 0; i < completeList.children.length; i++){
+    completeListArray.push(completeList.children[i].textContent)
+  }
+  onHoldListArray = [];
+  for (let i = 0; i < onHoldList.children.length; i++){
+    onHoldListArray.push(onHoldList.children[i].textContent)
+  }
+  updateDOM();
+}
+
+
 // Drag functions
 function drag(e) {
   draggedItem = e.target;
-  console.log('draggeditem', draggedItem);
-}
+};
 
 function allowDrop(e) {
   e.preventDefault();
@@ -91,18 +131,16 @@ function dragEnter(column) {
 
 function drop(e) {
   e.preventDefault();
-  const parent = listColumns[currentColumn];
-  parent.classList.remove('over');
+  // Remove Background Color/Padding
+  listColumns.forEach((column) => {
+    column.classList.remove('over')
+  })
+  //Add Item to Column
+  const parent = listColumns[currentColumn]
   parent.appendChild(draggedItem);
-  updateDOM();
+  rebuildArrays();
 }
 
-// Add event listeners for drag and drop
-listColumns.forEach((column, index) => {
-  column.addEventListener('dragover', allowDrop);
-  column.addEventListener('dragenter', () => dragEnter(index));
-  column.addEventListener('drop', drop);
-});
 
 // On load
 updateDOM();
