@@ -11,107 +11,90 @@
     <h1 class="main-title">Kanban Board</h1>
     <div class="drag-container">
         <ul class="drag-list">
+            <!-- Backlog Column -->
             <li class="drag-column backlog-column">
                 <span class="header">
                     <h1>Backlog</h1>
                 </span>
-                <!-- Backlog content -->
                 <div id="backlog-container" class="custom-scroll">
-                    <ul class="drag-item-list" 
-                    id="backlog-list" 
-                    ondrop="drop(event)"
-                    ondragover="allowDrop(event)" 
-                    ondragenter="dragEnter(0)"></ul>
+                    <ul class="drag-item-list" id="backlog-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(0)"></ul>
                 </div>
-                <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(0)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(0)">
                         <span>Save Item</span>
                     </div>
                     <div class="add-container">
-                        <div class="add-item"></div>
+                        <div class="add-item" contenteditable="true"></div>
                     </div>
                 </div>
             </li>
-            <!---Progress Column-->
+            
+            <!-- Progress Column -->
             <li class="drag-column progress-column">
                 <span class="header">
                     <h1>Progress</h1>
                 </span>
-                <!-- Progress content -->
                 <div id="progress-container" class="custom-scroll">
-                    <ul class="drag-item-list"  
-                    id="progress-list" ondrop="drop(event)"
-                    ondragover="allowDrop(event)"
-                    ondragenter="dragEnter(1)"></ul>
+                    <ul class="drag-item-list" id="progress-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(1)"></ul>
                 </div>
-                <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(1)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(1)">
                         <span>Save Item</span>
                     </div>
                     <div class="add-container">
-                        <div class="add-item"></div>
+                        <div class="add-item" contenteditable="true"></div>
                     </div>
                 </div>
             </li>
-            <!--Complete Column-->
+
+            <!-- Complete Column -->
             <li class="drag-column complete-column">
                 <span class="header">
                     <h1>Complete</h1>
                 </span>
-                <!-- Complete content -->
                 <div id="complete-container" class="custom-scroll">
-                    <ul class="drag-item-list" 
-                    id="complete-list" ondrop="drop(event)"
-                    ondragover="allowDrop(event)"
-                    ondragenter="dragEnter(2)"></ul>
+                    <ul class="drag-item-list" id="complete-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(2)"></ul>
                 </div>
-                <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(2)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(2)">
                         <span>Save Item</span>
                     </div>
                     <div class="add-container">
-                        <div class="add-item"></div>
+                        <div class="add-item" contenteditable="true"></div>
                     </div>
                 </div>
             </li>
-            <!--On Hold Column-->
+
+            <!-- On Hold Column -->
             <li class="drag-column on-hold-column">
                 <span class="header">
                     <h1>On-hold</h1>
                 </span>
-                <!-- on-Hold Content -->
                 <div id="on-hold-container" class="custom-scroll">
-                    <ul class="drag-item-list" 
-                    id="on-hold-list" ondrop="drop(event)"
-                    ondragover="allowDrop(event)"
-                    ondragenter="dragEnter(3)"></ul>
+                    <ul class="drag-item-list" id="on-hold-list" ondrop="drop(event)" ondragover="allowDrop(event)" ondragenter="dragEnter(3)"></ul>
                 </div>
-                <!-- Add button group -->
                 <div class="add-btn-group">
-                    <div class="add-btn">
+                    <div class="add-btn" onclick="showInputBox(3)">
                         <span class="plus-sign">+</span>
                         <span>Add Item</span>
                     </div>
-                    <div class="add-btn solid">
+                    <div class="add-btn solid" onclick="hideInputBox(3)">
                         <span>Save Item</span>
                     </div>
                     <div class="add-container">
-                        <div class="add-item"></div>
+                        <div class="add-item" contenteditable="true"></div>
                     </div>
                 </div>
             </li>
