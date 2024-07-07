@@ -11,6 +11,9 @@
 - Add new tasks to each column
 - Move tasks between columns using drag and drop
 - Save the state of tasks
-
+## Screenshot 📸
+![Kanban Board Screenshot](1.png)
 ## Live Demo 🚀 
 [View the live project here](https://lambrugeorge.github.io/Drag-and-drop/)
+
+
