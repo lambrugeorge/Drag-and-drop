@@ -25,7 +25,7 @@ let dragging = false;
 let currentColumn;
 
 // Get Arrays from localStorage if available, set default values if not
-function getSavedColumns() {
+const getSavedColumns = () => {
   if (localStorage.getItem('backlogItems')) {
     backlogListArray = JSON.parse(localStorage.backlogItems);
     progressListArray = JSON.parse(localStorage.progressItems);
@@ -40,7 +40,7 @@ function getSavedColumns() {
 }
 
 // Set localStorage Arrays
-function updateSavedColumns() {
+const updateSavedColumns = () => {
   listArrays = [backlogListArray, progressListArray, completeListArray, onHoldListArray];
   const arrayNames = ['backlog', 'progress', 'complete', 'onHold'];
   arrayNames.forEach((arrayName, index) => {
@@ -49,13 +49,10 @@ function updateSavedColumns() {
 }
 
 // Filter Array to remove empty values
-function filterArray(array) {
-  const filteredArray = array.filter(item => item !== null);
-  return filteredArray;
-}
+const filterArray = (array) => array.filter(item => item !== null);
 
 // Create DOM Elements for each list item
-function createItemEl(columnEl, column, item, index) {
+const createItemEl = (columnEl, column, item, index) => {
   // List Item
   const listEl = document.createElement('li');
   listEl.textContent = item;
@@ -70,7 +67,7 @@ function createItemEl(columnEl, column, item, index) {
 }
 
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
-function updateDOM() {
+const updateDOM = () => {
   // Check localStorage once
   if (!updatedOnLoad) {
     getSavedColumns();
@@ -105,7 +102,7 @@ function updateDOM() {
 }
 
 // Update Item - Delete if necessary, or update Array value
-function updateItem(id, column) {
+const updateItem = (id, column) => {
   const selectedArray = listArrays[column];
   const selectedColumn = listColumns[column].children;
   if (!dragging) {
@@ -119,7 +116,7 @@ function updateItem(id, column) {
 }
 
 // Add to Column List, Reset Textbox
-function addToColumn(column) {
+const addToColumn = (column) => {
   const itemText = addItems[column].textContent;
   const selectedArray = listArrays[column];
   selectedArray.push(itemText);
@@ -128,14 +125,14 @@ function addToColumn(column) {
 }
 
 // Show Add Item Input Box
-function showInputBox(column) {
+const showInputBox = (column) => {
   addBtns[column].style.visibility = 'hidden';
   saveItemBtns[column].style.display = 'flex';
   addItemContainers[column].style.display = 'flex';
 }
 
 // Hide Item Input Box
-function hideInputBox(column) {
+const hideInputBox = (column) => {
   addBtns[column].style.visibility = 'visible';
   saveItemBtns[column].style.display = 'none';
   addItemContainers[column].style.display = 'none';
@@ -143,45 +140,33 @@ function hideInputBox(column) {
 }
 
 // Allows arrays to reflect Drag and Drop items
-function rebuildArrays() {
-  backlogListArray = [];
-  for (let i = 0; i < backlogListEl.children.length; i++) {
-    backlogListArray.push(backlogListEl.children[i].textContent);
-  }
-  progressListArray = [];
-  for (let i = 0; i < progressListEl.children.length; i++) {
-    progressListArray.push(progressListEl.children[i].textContent);
-  }
-  completeListArray = [];
-  for (let i = 0; i < completeListEl.children.length; i++) {
-    completeListArray.push(completeListEl.children[i].textContent);
-  }
-  onHoldListArray = [];
-  for (let i = 0; i < onHoldListEl.children.length; i++) {
-    onHoldListArray.push(onHoldListEl.children[i].textContent);
-  }
+const rebuildArrays = () => {
+  backlogListArray = Array.from(backlogListEl.children).map(i => i.textContent);
+  progressListArray = Array.from(progressListEl.children).map(i => i.textContent);
+  completeListArray = Array.from(completeListEl.children).map(i => i.textContent);
+  onHoldListArray = Array.from(onHoldListEl.children).map(i => i.textContent);
   updateDOM();
 }
 
 // When Item Enters Column Area
-function dragEnter(column) {
+const dragEnter = (column) => {
   listColumns[column].classList.add('over');
   currentColumn = column;
 }
 
 // When Item Starts Dragging
-function drag(e) {
+const drag = (e) => {
   draggedItem = e.target;
   dragging = true;
 }
 
 // Column Allows for Item to Drop
-function allowDrop(e) {
+const allowDrop = (e) => {
   e.preventDefault();
 }
 
 // Dropping Item in Column
-function drop(e) {
+const drop = (e) => {
   e.preventDefault();
   const parent = listColumns[currentColumn];
   // Remove Background Color/Padding
